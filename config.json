@@ -1,0 +1,15 @@
+{
+  "authorization": "${API_TOKEN}",
+  "mode": "monitor_and_buy",
+  "gpu": {
+    "model": ["RTX 4090D", "RTX 3090","RTX 3080 Ti", "vGPU-32GB", "GTX 1080 Ti", "RTX 4090", "RTX 5090"],
+    "num": 2
+  },
+  "image": {
+    "private_image_uuid": "",
+    "autodl_image": "hub.kce.ksyun.com/autodl-image/torch:cuda11.8-cudnn8-devel-ubuntu22.04-py310-torch2.1.2"
+  },
+  "notification": {
+    "enabled": true
+  }
+}

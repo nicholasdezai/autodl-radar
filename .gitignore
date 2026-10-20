@@ -1,0 +1,15 @@
+# virtual enviroment
+/venv
+
+# local secrets
+.env
+.env.*
+!.env.example
+
+# config
+config.py
+config copy.json
+
+# pycharm
+.idea
+__pycache__

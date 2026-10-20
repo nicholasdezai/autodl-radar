@@ -1,6 +1,5 @@
 import gpu
 from config_loader import config
-from login_helper import login_and_update_config
 import time
 
 import watch
@@ -67,9 +66,6 @@ def monitor(config):
 
 
 def main():
-    if not config.has_authorization():
-        print("检测到配置文件中没有 authorization，开始登录...")
-        config.Authorization = login_and_update_config()
     monitor(config)
 
 

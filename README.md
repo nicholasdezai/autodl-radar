@@ -57,6 +57,7 @@ cp .env.example .env
 ```json
 {
   "authorization": "${API_TOKEN}",
+  "account_type": "sub_user",
   "mode": "monitor_and_buy",
   "gpu": {
     "model": ["RTX 4090", "RTX 5090"],
@@ -79,6 +80,12 @@ cp .env.example .env
 - **类型**: `string`
 - **获取**: 使用你的 AutoDL 授权令牌，推荐填写到 `.env` 的 `API_TOKEN`
 - **说明**: 支持 `${API_TOKEN}` 占位符和原来的明文形式。当前工作区缺少 `login_helper.py`，自动登录暂不可用，需要恢复该模块才能运行 `main.py`。
+
+#### 👤 account_type
+- `"sub_user"`：子账号（默认，兼容未配置该字段的旧配置）。
+- `"public"`：公开账号，使用源项目的普通账号接口。
+- 同时切换 GPU 监控、机器列表和创建实例接口；令牌必须属于所选账号类型，切换时请同步更新 `.env` 中的 `API_TOKEN`。
+- 建议切换后先使用 `monitor_only` 验证授权，再开启购买。
 
 #### 🎮 mode
 - **功能**: 程序运行模式

@@ -23,7 +23,7 @@ gpu2region.update({old: gpu2region[new] for old, new in gpu_aliases.items()})
 
 def watch_gpu(config, gpu):
     gpu = gpu_aliases.get(gpu, gpu)
-    url = 'https://www.autodl.com/api/v1/sub_user/machine/region/gpu_type'
+    url = config.api_url('machine/region/gpu_type')
     headers = {
         'User-Agent': UserAgent().random,
         'Authorization': config.Authorization

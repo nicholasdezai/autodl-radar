@@ -8,7 +8,7 @@ from watch import watch_gpu, region2name, gpu_aliases
 
 
 def get_machine_info(config, gpu, region,gpu_num):
-    url = 'https://www.autodl.com/api/v1/sub_user/user/machine/list'
+    url = config.api_url('user/machine/list')
     headers = {
         'User-Agent': UserAgent().random,
         'Authorization': config.Authorization
@@ -48,7 +48,7 @@ def buy(config, gpu, gpu_num,image,private_image_uuid):
     gpu = gpu_aliases.get(gpu, gpu)
     if image is None:
         image = 'hub.kce.ksyun.com/autodl-image/torch:cuda12.4-cudnn-devel-ubuntu22.04-py312-torch2.5.1'
-    url = 'https://www.autodl.com/api/v1/sub_user/order/instance/create/payg'
+    url = config.api_url('order/instance/create/payg')
     headers = {
         'User-Agent': UserAgent().random,
         'Authorization': config.Authorization

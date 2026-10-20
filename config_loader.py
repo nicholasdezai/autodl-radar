@@ -28,6 +28,11 @@ class Config:
                 os.environ.get('API_TOKEN') or env_values.get('API_TOKEN') or authorization
             )
         
+        # 默认保持原有子账号行为。
+        self.account_type = self.config_data.get('account_type', 'sub_user')
+        if self.account_type not in ('sub_user', 'public'):
+            raise ValueError('account_type 必须是 sub_user（子账号）或 public（公开账号）')
+
         # 运行模式配置
         self.mode = self.config_data.get('mode', 'monitor_only')  # monitor_only 或 monitor_and_buy
         
@@ -54,6 +59,11 @@ class Config:
         self.notification_enabled = self.config_data.get('notification', {}).get('enabled', True)
         if not isinstance(self.notification_enabled, bool):
             raise ValueError('notification.enabled 必须为布尔值 true 或 false')
+
+    def api_url(self, path):
+        """按照账号类型选择接口；公开账号路径与源项目一致。"""
+        prefix = '/sub_user' if self.account_type == 'sub_user' else ''
+        return f'https://www.autodl.com/api/v1{prefix}/{path.lstrip("/")}'
 
     def has_authorization(self):
         """检查是否有有效的 authorization"""
